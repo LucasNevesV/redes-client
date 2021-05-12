@@ -18,7 +18,6 @@ public class Main extends Application {
     private Group root;
     private Scene scene;
     public static Menu menu;
-    public static Instructions instructions;
     private static Status status = Status.MENU;
     private MouseEvent mouse;
     private KeyEvent key;
@@ -38,7 +37,6 @@ public class Main extends Application {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         root.getChildren().add(0, canvas);
         menu = new Menu(gc, status, root);
-        instructions = new Instructions(gc, status, root);
         TCPClient client = new TCPClient();
         Game gameScreen = new Game(gc, status, root);
         WaitToPlay waitToPlay = new WaitToPlay(gc, status, root);
@@ -82,10 +80,6 @@ public class Main extends Application {
 
                 }else if(status == Status.ROUNDRESULT){
                     roundResult.drawing(key, root, gameScreen, client, gameOver);
-
-                } else if(status == Status.INSTRUCTIONS){
-                    instructions.drawing(key, root);
-
                 } else if(status == Status.GAMEOVER){
                     gameOver.drawing(key, root, menu, client);
 
